@@ -1,0 +1,35 @@
+services:
+  laravel:
+    image: bitnami/laravel:8.6.4-debian-10-r6
+    container_name: Taller360_laravel
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=Taller360mariadb_db
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_DATABASE=taller360
+      - DB_PASSWORD=tis
+    volumes:
+      - ../taller-tis:/app
+    networks:
+      - tis_laravel_network
+
+  mariadb:
+    image: mariadb:10.6.3
+    container_name: Taller360mariadb_db
+    ports:
+      - "3306:3306"
+    environment:
+      - MARIADB_ROOT_PASSWORD=tis
+      - MARIADB_DATABASE=taller360
+    volumes:
+      - mariadbtaller360_data:/var/lib/mysql
+    networks:
+      - tis_laravel_network
+
+volumes:
+  mariadbtaller360_data:
+
+networks:
+  tis_laravel_network:   
