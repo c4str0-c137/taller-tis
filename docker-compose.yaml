@@ -23,6 +23,7 @@ services:
     environment:
       - MARIADB_ROOT_PASSWORD=tis
       - MARIADB_DATABASE=taller360
+      
     volumes:
       - mariadbtaller360_data:/var/lib/mysql
     networks:
